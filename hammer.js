@@ -1,7 +1,7 @@
-/*! Hammer.JS - v2.0.7 - 2016-04-22
+/*! Hammer.JS - v2.0.8 - 2022-10-25
  * http://hammerjs.github.io/
  *
- * Copyright (c) 2016 Jorik Tangelder;
+ * Copyright (c) 2022 Jorik Tangelder;
  * Licensed under the MIT license */
 (function(window, document, exportName, undefined) {
   'use strict';
@@ -888,8 +888,8 @@ inherit(PointerEventInput, Input, {
         // get index of the event in the store
         var storeIndex = inArray(store, ev.pointerId, 'pointerId');
 
-        // start and mouse must be down
-        if (eventType & INPUT_START && (ev.button === 0 || isTouch)) {
+        // start and mouse must be down and inside element
+        if (eventType & INPUT_START && (ev.button === 0 || isTouch) && ev.x <= this.element.clientWidth && ev.y <= this.element.clientHeight) {
             if (storeIndex < 0) {
                 store.push(ev);
                 storeIndex = store.length - 1;
@@ -2145,7 +2145,7 @@ function Hammer(element, options) {
 /**
  * @const {string}
  */
-Hammer.VERSION = '2.0.7';
+Hammer.VERSION = '2.0.8';
 
 /**
  * default settings

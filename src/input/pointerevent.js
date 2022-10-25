@@ -56,7 +56,7 @@ inherit(PointerEventInput, Input, {
         var storeIndex = inArray(store, ev.pointerId, 'pointerId');
 
         // start and mouse must be down
-        if (eventType & INPUT_START && (ev.button === 0 || isTouch)) {
+        if (eventType & INPUT_START && (ev.button === 0 || isTouch) && ev.x <= this.element.clientWidth && ev.y <= this.element.clientHeight) {
             if (storeIndex < 0) {
                 store.push(ev);
                 storeIndex = store.length - 1;
